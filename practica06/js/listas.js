@@ -9,15 +9,19 @@ function inicio(){
     let botonDef=document.getElementById("annadir_def");
     let botonLoc=document.getElementById("annadir_localidad");
     let botonCoc=document.getElementById("annadir_coche");
+    let focusCom=document.getElementById("comunidad");
+    
     if (document.addEventListener){
         botonDef.addEventListener("click", annadirDef);
         botonLoc.addEventListener("click", annadirLoc);
         botonCoc.addEventListener("click", annadirCoc);
+        focusCom.addEventListener("change", comunidades);
 
     }else if (document.attachEvent){
         botonDef.attachEvent("onclick", annadirDef);
         botonLoc.attachEvent("onclick", annadirLoc);
         botonCoc.attachEvent("onclick", annadirCoc);
+        focusCom.attachEvent("onchange", comunidades);
     }
 }
 function annadirDef()
@@ -118,97 +122,68 @@ function annadirCoc(){
 		}
 	}
 }
-/*
-comunidadesYProvincias = [
-    ["Andalucía", [
-        ["Almería", "Conocida por sus playas, desiertos y paisajes únicos, Almería es famosa por su buen clima y su herencia árabe en monumentos como la Alcazaba."],
-        ["Cádiz", "Destino costero con playas y la icónica Torre Tavira; Cádiz es una de las ciudades más antiguas de Europa."],
-        ["Córdoba", "Su Mezquita-Catedral es Patrimonio de la Humanidad; Córdoba mezcla culturas árabe, judía y cristiana."],
-        ["Granada", "Hogar de la Alhambra y Sierra Nevada, es un destino histórico y natural imperdible."],
-        ["Huelva", "Famosa por sus playas, naturaleza y el legado de Cristóbal Colón en lugares como La Rábida."],
-        ["Jaén", "Reconocida por sus extensos olivares y el Castillo de Santa Catalina; es capital mundial del aceite de oliva."],
-        ["Málaga", "Importante centro turístico y cultural; destaca por sus playas y el Museo Picasso."],
-        ["Sevilla", "Con la Giralda y la Feria de Abril, Sevilla es el corazón cultural de Andalucía."]
-    ]],
-    ["Aragón", [
-        ["Huesca", "Con los Pirineos y el Parque de Ordesa, Huesca es un paraíso para montañistas y amantes de la naturaleza."],
-        ["Teruel", "Destaca por su arquitectura mudéjar y la historia medieval de los Amantes de Teruel."],
-        ["Zaragoza", "Famosa por la Basílica del Pilar y su rica historia romana y árabe."]
-    ]],
-    ["Asturias", [
-        ["Asturias", "Paraíso natural de montañas, playas y ciudades históricas como Oviedo y Gijón."]
-    ]],
-    ["Islas Baleares", [
-        ["Islas Baleares", "Famosas por sus playas y vida nocturna, especialmente en Ibiza y Mallorca."]
-    ]],
-    ["Canarias", [
-        ["Las Palmas", "Con playas y el ambiente cosmopolita de la capital, Las Palmas es muy atractiva."],
-        ["Santa Cruz de Tenerife", "Hogar del famoso Carnaval y del volcán Teide, es un importante destino turístico."]
-    ]],
-    ["Cantabria", [
-        ["Cantabria", "Con cuevas prehistóricas como Altamira y playas, Cantabria es rica en historia y paisajes verdes."]
-    ]],
-    ["Castilla y León", [
-        ["Ávila", "Conocida por sus murallas medievales, Ávila es Patrimonio de la Humanidad."],
-        ["Burgos", "Famosa por su catedral gótica, Burgos tiene un rico legado histórico."],
-        ["León", "Su Catedral gótica y la historia romana y medieval destacan en León."],
-        ["Palencia", "Reconocida por su arte románico y su tranquila vida en el campo."],
-        ["Salamanca", "Con su universidad histórica y arquitectura renacentista, es ciudad Patrimonio de la Humanidad."],
-        ["Segovia", "Famosa por su Acueducto romano y su Alcázar, es patrimonio de gran riqueza."],
-        ["Soria", "Enclave natural con arquitectura románica y lugares icónicos como la Laguna Negra."],
-        ["Valladolid", "Antigua capital, destaca por su historia y vinos de la región."],
-        ["Zamora", "Con un rico patrimonio románico y medieval, Zamora es un tesoro cultural."]
-    ]],
-    ["Castilla-La Mancha", [
-        ["Albacete", "Conocida por su feria y su tradicional cuchillería, es el centro de La Mancha."],
-        ["Ciudad Real", "Hogar de molinos de viento de la Mancha y rica en historia medieval."],
-        ["Cuenca", "Famosa por sus Casas Colgadas, Cuenca es Patrimonio de la Humanidad."],
-        ["Guadalajara", "Provincia con castillos medievales y paisajes naturales impresionantes."],
-        ["Toledo", "Ciudad Patrimonio de la Humanidad, conocida como la ciudad de las tres culturas."]
-    ]],
-    ["Cataluña", [
-        ["Barcelona", "Destacada por la arquitectura de Gaudí, como la Sagrada Familia y el Parque Güell."],
-        ["Girona", "Ciudad medieval con un casco antiguo bien conservado y murallas romanas."],
-        ["Lleida", "Con historia romana y la Catedral Vieja en lo alto, Lleida es cultural y paisajística."],
-        ["Tarragona", "Con ruinas romanas Patrimonio de la Humanidad y playas mediterráneas."]
-    ]],
-    ["Comunidad Valenciana", [
-        ["Alicante", "Famosa por sus playas y el castillo de Santa Bárbara."],
-        ["Castellón", "Destino de naturaleza y playas, Castellón es rica en tradiciones mediterráneas."],
-        ["Valencia", "Con su Ciudad de las Artes, playas y Fallas, Valencia es vibrante y cultural."]
-    ]],
-    ["Extremadura", [
-        ["Badajoz", "Enclave fronterizo con Portugal, destaca por su Alcazaba árabe."],
-        ["Cáceres", "Ciudad medieval bien conservada, Patrimonio de la Humanidad."]
-    ]],
-    ["Galicia", [
-        ["A Coruña", "Con la Torre de Hércules y playas, A Coruña es un destino histórico."],
-        ["Lugo", "Famosa por sus murallas romanas, Lugo es Patrimonio de la Humanidad."],
-        ["Ourense", "Conocida por sus aguas termales y su catedral románica."],
-        ["Pontevedra", "Con un casco antiguo encantador y playas cercanas, Pontevedra es pintoresca."]
-    ]],
-    ["Madrid", [
-        ["Madrid", "La capital, rica en cultura y arte, con lugares icónicos como el Prado y el Retiro."]
-    ]],
-    ["Murcia", [
-        ["Murcia", "Famosa por su catedral y su gastronomía, Murcia combina tradición y modernidad."]
-    ]],
-    ["Navarra", [
-        ["Navarra", "Con su capital Pamplona y los Sanfermines, Navarra es historia y naturaleza."]
-    ]],
-    ["La Rioja", [
-        ["La Rioja", "Famosa por sus vinos y paisajes vitivinícolas, La Rioja es tierra de tradición."]
-    ]],
-    ["País Vasco", [
-        ["Álava", "Vitoria, su capital, es conocida por su casco medieval y entorno natural."],
-        ["Guipúzcoa", "San Sebastián destaca por su bahía y su excelente gastronomía."],
-        ["Vizcaya", "Con Bilbao y el Museo Guggenheim, Vizcaya es moderna y cultural."]
-    ]],
-    ["Ceuta", [
-        ["Ceuta", "Ciudad autónoma en África, con rica herencia árabe, cristiana y romana."]
-    ]],
-    ["Melilla", [
-        ["Melilla", "Ciudad multicultural en el norte de África, con arquitectura modernista."]
-    ]]
-]
-];*/
+function comunidades() {
+    let comunidadesYProvincias = [
+        ["Andalucia", ["Almería", "Cádiz", "Córdoba", "Granada", "Huelva", "Jaén", "Málaga", "Sevilla"]],
+        ["Aragon", ["Huesca", "Teruel", "Zaragoza"]],
+        ["Asturias", ["Asturias"]],
+        ["Baleares", ["Islas Baleares"]],
+        ["Canarias", ["Las Palmas", "Santa Cruz de Tenerife"]],
+        ["Cantabria", ["Cantabria"]],
+        ["Castilla_la_mancha", ["Albacete", "Ciudad Real", "Cuenca", "Guadalajara", "Toledo"]],
+        ["Castilla_y_leon", ["Ávila", "Burgos", "León", "Palencia", "Salamanca", "Segovia", "Soria", "Valladolid", "Zamora"]],
+        ["Catalunya", ["Barcelona", "Girona", "Lleida", "Tarragona"]],
+        ["Comunidad_valenciana", ["Alicante", "Castellón", "Valencia"]],
+        ["Extremadura", ["Badajoz", "Cáceres"]],
+        ["Galicia", ["A Coruña", "Lugo", "Ourense", "Pontevedra"]],
+        ["Madrid", ["Madrid"]],
+        ["Murcia", ["Murcia"]],
+        ["Navarra", ["Navarra"]],
+        ["La Rioja", ["La Rioja"]],
+        ["Pais_vasco", ["Álava", "Guipúzcoa", "Vizcaya"]],
+        ["Ceuta", ["Ceuta"]],
+        ["Melilla", ["Melilla"]]
+    ]
+    let = comunidadesDesc = [
+        ["Andalucia", ["Con un rico legado árabe, Andalucía es famosa por la Alhambra, la Mezquita de Córdoba, sus playas y su vibrante flamenco."]],
+        ["Aragon", ["Aragón destaca por sus paisajes pirenaicos, la arquitectura mudéjar en Teruel y la Basílica del Pilar en Zaragoza."]],
+        ["Asturias", ["Conocida como el 'Paraíso Natural', Asturias ofrece verdes montañas, playas espectaculares y una gastronomía basada en sidra y fabada."]],
+        ["Baleares", ["Famosas por sus playas paradisíacas y vida nocturna, las Baleares, especialmente Mallorca e Ibiza, son un destino turístico internacional."]],
+        ["Canarias", ["Con clima subtropical, paisajes volcánicos y playas, Canarias es conocida por el Teide y el Carnaval de Santa Cruz."]],
+        ["Cantabria", ["Cantabria ofrece montañas, playas y cuevas prehistóricas, como Altamira, en un entorno de gran belleza natural."]],
+        ["Castilla_y_leon", ["Extensa región con ciudades históricas, arte románico y catedrales; Castilla y León incluye Salamanca, Burgos y Valladolid."]],
+        ["Castilla_la_mancha", ["Famosa por sus molinos de viento, esta región inspira el Quijote y ofrece monumentos históricos en Toledo y Cuenca."]],
+        ["Catalunya", ["Cataluña es culturalmente vibrante, con la arquitectura de Gaudí en Barcelona, playas en la Costa Brava y los Pirineos."]],
+        ["Comunidad_valenciana", ["Reconocida por sus playas mediterráneas, la Ciudad de las Artes y las Fallas, es una región dinámica y soleada."]],
+        ["Extremadura", ["Con ciudades históricas como Mérida y Cáceres, Extremadura ofrece una rica herencia romana y paisajes naturales vírgenes."]],
+        ["Galicia", ["Galicia es famosa por el Camino de Santiago, sus rías, gastronomía de mariscos y su verde entorno montañoso."]],
+        ["Madrid", ["Madrid, la capital, combina historia, cultura y modernidad, con museos, el Palacio Real y el parque del Retiro."]],
+        ["Murcia", ["Murcia es soleada y agrícola, conocida por sus huertas, la catedral de su capital y playas mediterráneas."]],
+        ["Navarra", ["Navarra, conocida por los Sanfermines en Pamplona, ofrece paisajes naturales y un importante patrimonio medieval."]],
+        ["La Rioja", ["Famosa por sus vinos, La Rioja es una pequeña región con paisajes de viñedos y bodegas de renombre mundial."]],
+        ["Pais_vasco", ["El País Vasco destaca por su gastronomía, el Museo Guggenheim en Bilbao y los paisajes verdes de montaña y mar."]],
+        ["Ceuta", ["Ceuta, en el norte de África, es una ciudad multicultural con historia cristiana, árabe y romana."]],
+        ["Melilla", ["Melilla, en la costa africana, destaca por su arquitectura modernista y su vibrante mezcla cultural."]]
+    ]
+    let todasProvincias = document.getElementById("provincias");
+    let eleccion = document.getElementById("comunidad").value;
+    let encontrado = true; 
+    let indice = 0;
+
+    while (encontrado && indice < comunidadesYProvincias.length) {
+        if (comunidadesYProvincias[indice][0] == eleccion) 
+            encontrado = false;
+        indice += 1;
+    }
+    for (let i = todasProvincias.length-1; i >= 0 ; i--) {
+        todasProvincias.item(i).remove();
+        }
+    indice -= 1;
+    comunidadesYProvincias[indice][1].forEach(provincia => {
+        let option=document.createElement("option");
+        option.append(provincia);
+        todasProvincias.appendChild(option);
+    });
+    let cajaCont = document.getElementById("comentario");
+    cajaCont.textContent = comunidadesDesc[indice][1][0];
+}
