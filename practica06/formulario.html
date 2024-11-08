@@ -5,7 +5,8 @@
     <meta charset="utf-8" />
     <meta name="author" content="Joel" />
     <link href="./css/style.css" rel="stylesheet" type="text/css" />
-    <script src="./js/js.js" type="text/javascript"> </script>
+    <script src="./js/listas.js" type="text/javascript"> </script>
+    <script src="./js/chat.js" type="text/javascript"> </script>
 
 </head>
 <body>
@@ -15,58 +16,59 @@
         <section>
             <article>
                 <div>
+                    <dialog >
+                        <div>
+                            <form method="post" name="usuario">
+                                <label>Usuario</label>
+                                <input type="text"  id="usuario" name="usuario">
+                                <label>Contraseña</label>
+                                <input type="text"  id="contraseña" name="contraseña">
+                                <input type="button" value="Aceptar" name="aceptar">
+                                <input type="button" value="Cancelar" name="cancelar">
+                            </form>
+                        </div>
+                    </dialog>
                     <div class="usuario">
                         <p>Usuario</p>
                         <input type="button" value="Registrarme" name="registro">
                         <input type="button" value="Entrar" name="entrar">
-                        <dialog open>
-                            <div>
-                                <form method="post" name="usuario">
-                                    <label>Usuario</label>
-                                    <input type="text"  id="usuario" name="usuario">
-                                    <label>Contraseña</label>
-                                    <input type="text"  id="contraseña" name="contraseña">
-                                    <input type="button" value="Aceptar" name="aceptar">
-                                    <input type="button" value="Cancelar" name="cancelar">
-                                </form>
-                            </div>
-                        </dialog>
                     </div>
                     <form method="post" name="formulario">
                             <div class="seccion definiciones">
                                 <h2>Definiciones</h2>
                                 <label>Palabra</label>
-                                <input type="text"  id="palabra" name="palabra"><br>
+                                <input type="text"  id="palabra" ><br>
                                 <label>Concepto</label>
-                                <input type="text"  id="concepto" name="concepto"><br>
-                                <input type="button" value="Añadir Definición" name="annadir_def">
+                                <input type="text"  id="concepto" ><br>
+                                <input type="button" value="Añadir Definición" id="annadir_def">
                                 <p>Lista de Definiciones</p>
+                                <dl id="def">
+
+                                </dl>
                             </div>
 
                             <div class="seccion localidades">
                                 <h2>Nombres de Localidades</h2>
                                 <label>Localidad</label>
                                 <input type="text"  id="localidad" name="localidad"><br>
-                                <input type="button" value="Añadir Localidad" name="annadir_localidad">
+                                <input type="button" value="Añadir Localidad" id="annadir_localidad">
                                 <p>Lista de Localidades ordenadas</p>
+                                <ul id="localidades">
+                                </ul>
                             </div>
 
                             <div class="seccion coches">
                                 <h2>Listado de Coches</h2>
                                 <label>Marca</label>
-                                <input type="text"  id="localidad" name="localidad"><br>
+                                <input type="text"  id="marca" name="marca"><br>
                                 <label>Modelo</label>
-                                <input type="text"  id="localidad" name="localidad"><br>
+                                <input type="text"  id="modelo" name="modelo"><br>
                                 <label>Precio</label>
-                                <input type="text"  id="localidad" name="localidad"><br>
-                                <input type="button" value="Añadir Coche" name="annadir_coche">
-                                <table border=1> 
+                                <input type="text"  id="precio" name="precio"><br>
+                                <input type="button" value="Añadir Coche" id="annadir_coche">
+                                <table border=1 id="coches"> 
                                     <thead>
-                                        <tr>
-                                            <th>Marca</th>
-                                            <th>Modelo</th>
-                                            <th>Precio</th>
-                                        </tr>
+                                        <tr> <th>Marca</th><th>Modelo</th><th>Precio</th></tr>
                                     </thead>
                                     <tbody>
 
