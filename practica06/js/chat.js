@@ -104,7 +104,7 @@ function comprobarCookie()
     {   
         let nombreUser = document.getElementById("nombreUser");
         let botonEntr=document.getElementById("entrar");
-
+        botonEntr.value = "Cerrar Sesion";
         nombreUser.textContent = user;
     }
 
