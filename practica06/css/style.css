@@ -3,6 +3,14 @@ body
     background-color: rgb(0, 0, 255);
     color: white;
 }
+dialog >div > form
+{
+    display:grid;
+    -ms-grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
 .usuario
 {
     margin-left: 90%;
@@ -19,7 +27,7 @@ body
 
 .usuario > p{margin-bottom: 0}
 
-form
+form.form
 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -28,9 +36,9 @@ form
 }
 
 div[class^="seccion"]{margin-bottom: 1vw;}
-form input[type="text"],form label{margin: 0.2vw 0vw;}
-form input[type="button"]{margin: 0.5vw 0vw;}
-form select#provincias{width: 130px;}
+form.form input[type="text"],form label{margin: 0.2vw 0vw;}
+form.form input[type="button"]{margin: 0.5vw 0vw;}
+form.form select#provincias{width: 130px;}
 .coches table {width: 100%;}
 
 

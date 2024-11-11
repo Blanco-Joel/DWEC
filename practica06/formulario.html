@@ -16,24 +16,25 @@
         <section>
             <article>
                 <div>
-                    <dialog >
+                    <dialog id="registroDialog">
                         <div>
-                            <form method="post" name="usuario">
+                            <form method="post" name="usuario" class="registro">
                                 <label>Usuario</label>
                                 <input type="text"  id="usuario" name="usuario">
                                 <label>Contraseña</label>
-                                <input type="text"  id="contraseña" name="contraseña">
-                                <input type="button" value="Aceptar" name="aceptar">
-                                <input type="button" value="Cancelar" name="cancelar">
+                                <input type="text"  id="passw" name="passw">
+                                <input type="button" value="Aceptar" name="aceptar" id="aceptar">
+                                <input type="button" value="Cancelar" name="cancelar" id="cancelar">
                             </form>
                         </div>
                     </dialog>
+                    
                     <div class="usuario">
-                        <p>Usuario</p>
-                        <input type="button" value="Registrarme" name="registro">
-                        <input type="button" value="Entrar" name="entrar">
+                        <p id="nombreUser">Usuario</p>
+                        <input type="button" value="Registrarme" name="registro" id="registrar">
+                        <input type="button" value="Entrar" name="entrar" id="entrar">
                     </div>
-                    <form method="post" name="formulario">
+                    <form class="form" method="post" name="formulario">
                             <div class="seccion definiciones">
                                 <h2>Definiciones</h2>
                                 <label>Palabra</label>

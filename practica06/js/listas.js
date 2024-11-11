@@ -35,7 +35,6 @@ function annadirDef()
 		let indice=0;
 		while (inexistente && indice < todos.length)
         {
-            console.log(todos.item(indice).textContent);
             if (todos.item(indice).textContent.substring(0,palabra.length) == palabra )
             {
                 let nuevoCon=document.createElement("dd");
