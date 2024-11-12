@@ -26,8 +26,8 @@ function inicio(){
 }
 function annadirDef()
 {
-    let palabra=document.getElementById("palabra").value.trim();
-    let concepto=document.getElementById("concepto").value.trim();
+    let palabra  = document.getElementById("palabra").value.trim();
+    let concepto = document.getElementById("concepto").value.trim();
 	if (palabra.length > 0 && concepto.length > 0 ) {
 		let lista=document.getElementById("def");
 		let todos=lista.getElementsByTagName("dt");
@@ -99,7 +99,7 @@ function annadirCoc(){
 		let inexis=true;
 		while (inexis && indice < todos.length){
 			let celdas=todos.item(indice).getElementsByTagName("td");
-			if (celdas[0].textContent == marca)
+			if (celdas[0].textContent == marca && celdas[1].textContent == modelo)
 				inexis=false;
 			indice+=1;
 		}

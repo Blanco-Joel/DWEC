@@ -67,7 +67,7 @@
                                 <label>Precio</label>
                                 <input type="text"  id="precio" name="precio"><br>
                                 <input type="button" value="Añadir Coche" id="annadir_coche">
-                                <table border=1 id="coches"> 
+                                <table border="3" id="coches"> 
                                     <thead>
                                         <tr> <th>Marca</th><th>Modelo</th><th>Precio</th></tr>
                                     </thead>
@@ -113,6 +113,36 @@
                             </div>
 
                     </form>
+                </div>
+            </article>
+        </section>
+        <section>
+            <article>
+                <div>
+                    <div id="mensajes">
+            
+                    </div>
+                    <input type="button" value="Añadir Mensaje" id="annadir_mensaje">
+                    <div id="parametros_mensajes">
+                        <label>Imagen</label>
+                        <select id="pikachus" name="pikachus" >
+                            <option value="error">--Seleccione su imagen--</option>
+                            <option value="pikachu_detective">Pikachu detective</option>
+                            <option value="pikachu_fumon">Pikachu fumón</option>
+                            <option value="pikachu_gordo">Pikachu gordito</option>
+                            <option value="pikachu_thor">Pikachu vestido de Thor</option>
+                            <option value="pikachu_traje">Pikachu con traje</option>
+                            <option value="no_es_pikachu">Definitivamente no es Pikachu</option>
+                        </select>
+                        <label>Escriba el título de su mensaje</label>
+                        <input type="text"  id="titulo_mensaje" name="titulo_mensaje" >
+                        <label>Escriba el cuerpo de su mensaje</label>
+                        <textarea  id="cuerpo_mensaje" name="cuerpo_mensaje" rows="7" ></textarea>
+                        <div class="mensaje">
+                            <input type="button" value="Aceptar" id="enviar_mensaje" >
+                            <input type="button" value="Cancelar" id="no_enviar_mensaje" >
+                        </div>
+                    </div>
                 </div>
             </article>
         </section>

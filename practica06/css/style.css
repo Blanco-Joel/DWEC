@@ -31,7 +31,7 @@ form.form
 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 200px;
+    gap: 100px;
     padding: 20px;
 }
 
@@ -40,5 +40,24 @@ form.form input[type="text"],form label{margin: 0.2vw 0vw;}
 form.form input[type="button"]{margin: 0.5vw 0vw;}
 form.form select#provincias{width: 130px;}
 .coches table {width: 100%;}
+div#parametros_mensajes
+{
+    width: 50%;
+    display:none;
+    -ms-grid-template-columns:50% 25%;
+    grid-template-columns: 50% 35%;
+    row-gap: 4px ;
+    margin: 10px 5px;
+}
+.mensaje
+{
+    width: min-content;
+    -ms-grid-column:2;
+    grid-column:2;
+    display: flex;
+}
+.mensaje > input{margin: 5px 33px;}
+
+
 
 
