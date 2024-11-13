@@ -22,7 +22,7 @@
                                 <label>Usuario</label>
                                 <input type="text"  id="usuario" name="usuario">
                                 <label>Contraseña</label>
-                                <input type="text"  id="passw" name="passw">
+                                <input type="password"  id="passw" name="passw">
                                 <input type="button" value="Aceptar" name="aceptar" id="aceptar">
                                 <input type="button" value="Cancelar" name="cancelar" id="cancelar">
                             </form>
@@ -125,15 +125,14 @@
                     <input type="button" value="Añadir Mensaje" id="annadir_mensaje">
                     <div id="parametros_mensajes">
                         <label>Imagen</label>
-                        <select id="pikachus" name="pikachus" >
-                            <option value="error">--Seleccione su imagen--</option>
-                            <option value="pikachu_detective">Pikachu detective</option>
-                            <option value="pikachu_fumon">Pikachu fumón</option>
-                            <option value="pikachu_gordo">Pikachu gordito</option>
-                            <option value="pikachu_thor">Pikachu vestido de Thor</option>
-                            <option value="pikachu_traje">Pikachu con traje</option>
-                            <option value="no_es_pikachu">Definitivamente no es Pikachu</option>
-                        </select>
+                        <div>
+                            <input type="radio" id="pikachu_detective" name="pikachus" value="pikachu_detective"><label for="pikachu_detective"><img src="./img/pikachu_detective" height="50px" width="50px"></label>
+                            <input type="radio" id="pikachu_fumon" name="pikachus" value="pikachu_fumon"><label for="pikachu_fumon"><img src="./img/pikachu_fumon" height="50px" width="50px"></label>
+                            <input type="radio" id="pikachu_gordo" name="pikachus" value="pikachu_gordo"><label for="pikachu_gordo"><img src="./img/pikachu_gordo" height="50px" width="50px"></label>
+                            <input type="radio" id="pikachu_thor" name="pikachus" value="pikachu_thor"><label for="pikachu_thor"><img src="./img/pikachu_thor" height="50px" width="50px"></label>
+                            <input type="radio" id="pikachu_traje" name="pikachus" value="pikachu_traje"><label for="pikachu_traje"><img src="./img/pikachu_traje" height="50px" width="50px"></label>
+                            <input type="radio" id="no_es_pikachu" name="pikachus" value="no_es_pikachu"><label for="no_es_pikachu"><img src="./img/no_es_pikachu" height="50px" width="50px"></label>
+                        </div>
                         <label>Escriba el título de su mensaje</label>
                         <input type="text"  id="titulo_mensaje" name="titulo_mensaje" >
                         <label>Escriba el cuerpo de su mensaje</label>

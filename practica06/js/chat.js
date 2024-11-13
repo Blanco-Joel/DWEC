@@ -170,11 +170,11 @@ function annadirMensaje()
 }
 function validacion()
 {
-    let pikachu = document.getElementById("pikachus").value;
+    let pikachu = document.querySelector('input[name="pikachus"]:checked').value;
     let titulo  = document.getElementById("titulo_mensaje").value;
     let cuerpo  = document.getElementById("cuerpo_mensaje").value;
 
-    if (pikachu != "error" && titulo.length > 0 && cuerpo.length > 0 )
+    if (pikachu.length > 0 && titulo.length > 0 && cuerpo.length > 0 )
     {
         enviarMensaje();
         deshabilitarMensaje();
@@ -188,7 +188,10 @@ function validacion()
 function deshabilitarMensaje()
 {
     let parametros=document.getElementById("parametros_mensajes");
-    document.getElementById("pikachus").value       = "error";
+    let pikachus = document.getElementsByName("pikachus");
+
+    for (var i = 0; i < pikachus.length; i++) 
+        pikachus[i].checked = false;
     document.getElementById("titulo_mensaje").value = "";
     document.getElementById("cuerpo_mensaje").value = "";
     parametros.style.display="none";
@@ -198,7 +201,7 @@ function enviarMensaje()
 {
     let user     = document.getElementById("usuario").value;
     let listMen  = document.getElementById("mensajes");
-    let pikachu  = document.getElementById("pikachus").value + ".jpg";
+    let pikachu  = document.querySelector('input[name="pikachus"]:checked').value + ".jpg";
     let titulo   = document.getElementById("titulo_mensaje").value;
     let cuerpo   = document.getElementById("cuerpo_mensaje").value;
     let nuevoMen = document.createElement("div");
@@ -209,20 +212,31 @@ function enviarMensaje()
     let etiqUse  = document.createTextNode(user);
     let etiqTit  = document.createTextNode(titulo);
     let etiqCue  = document.createTextNode(cuerpo);
-    nuevoMen.style.border ="2px white solid";
     nuevaImg.setAttribute("src","./img/" + pikachu);
     nuevaImg.setAttribute("height","40px");
     nuevaImg.setAttribute("width","40px");
-    nuevoUse.style.color ="yellow";
-    nuevoTit.style.fontWeight = "bold";
-    nuevoCue.style.fontStyle = "italic";
+    nuevoMen.style.border       = "2px white solid";
+    nuevoMen.style.width        = "max-content";
+    nuevoMen.style.marginBottom = "15px";
+    nuevaImg.style.display      = "inline";
+    nuevaImg.style.margin       = "15px 5px -10px 15px";
+    nuevoUse.style.color        = "yellow";
+    nuevoUse.style.display      = "inline";
+    nuevoUse.style.marginRight  = "15px";
+    nuevoUse.style.fontSize     = "26pt";
+    nuevoTit.style.fontWeight   = "bold";
+    nuevoTit.style.marginLeft   = "15px";
+    nuevoTit.style.marginRight  = "15px";
+    nuevoCue.style.fontStyle    = "italic";
+    nuevoCue.style.marginLeft   = "15px";
+    nuevoCue.style.marginRight  = "15px";
     nuevoUse.append(etiqUse);
     nuevoTit.append(etiqTit);
     nuevoCue.append(etiqCue);
-    nuevoMen.appendChild(nuevaImg);
     nuevoMen.appendChild(nuevoUse);
     nuevoMen.appendChild(nuevoTit);
     nuevoMen.appendChild(nuevoCue);
+    nuevoMen.insertBefore(nuevaImg,nuevoUse);
     listMen.appendChild(nuevoMen);
 
 }
