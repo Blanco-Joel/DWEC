@@ -1,9 +1,8 @@
 <?php
     $archivo = $_REQUEST["provincia"];
     $file = file_get_contents("../".$archivo);
-	$cadenaDiv = "<div id=\"contenido\">";
-	$posIni = strpos($file,$cadenaDiv);
+	$posIni = strpos($file,"<div id=\"contenido\">");
 	$posFin = strpos($file,"</div>",$posIni);
-	$cadena = html_entity_decode(trim(substr($file,$posIni+strlen($cadenaDiv),$posFin-$posIni-strlen($cadenaDiv))));
+	$cadena = html_entity_decode(trim(substr($file,$posIni+strlen("<div id=\"contenido\">"),$posFin-$posIni-strlen("<div id=\"contenido\">"))));
     echo $cadena ;
 ?>

@@ -7,7 +7,7 @@ function inicio(){
 	crearSelects();
 	let marca=document.getElementById("marca");
 	let electrodomestico=document.getElementById("electrodomestico");
-	llamada();
+
 	if (document.addEventListener)
 	{
 		marca.addEventListener("input", llamada);
@@ -21,26 +21,25 @@ function inicio(){
 
 function crearSelects(){
 	let conn;
-		if (window.XMLHttpRequest)
-			conn = new XMLHttpRequest;
-		else if (window.ActiveXObject)
-			conn= new ActiveXObject("Microsoft.XMLHttp");
-		
-		if (document.addEventListener)
-			conn.addEventListener("readystatechange", respuestaSelects);
-		else if (document.attachEvent)
-			conn.attachEvent("onreadystatechange", respuestaSelects);
-		
-		conn.open("GET","php/php.php?inicio=true");
-		conn.send(null);
+	if (window.XMLHttpRequest)
+		conn = new XMLHttpRequest;
+	else if (window.ActiveXObject)
+		conn= new ActiveXObject("Microsoft.XMLHttp");
+	
+	if (document.addEventListener)
+		conn.addEventListener("readystatechange", respuestaSelects);
+	else if (document.attachEvent)
+		conn.attachEvent("onreadystatechange", respuestaSelects);
+	
+	conn.open("GET","php/php.php?inicio=true");
+	conn.send(null);
 	
 
 }
 
 function llamada(){
-    let marca    = document.getElementById("marca").value.trim();
+	let marca = document.getElementById("marca").value.trim();
 	let electrodomestico = document.getElementById("electrodomestico").value.trim();
-	
 	let conn;
 
 	if (window.XMLHttpRequest)
@@ -53,13 +52,18 @@ function llamada(){
 	else if (document.attachEvent)
 		conn.attachEvent("onreadystatechange", respuesta);
 	
-	conn.open("POST","php/php2.php",true);
-
-	let datos= "<producto><marca>"+marca+"</marca><pulgadas>"+electrodomestico+"</pulgadas></producto>";
-	conn.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-	conn.send(datos);
+	conn.open("POST","php/php2.php");
+	conn.setRequestHeader("Content-Type","application/json");
+	
+	let misDatos=new Array();
+	let datos=new Object();
+	datos.marca=marca;
+	datos.electrodomestico=electrodomestico;
+	misDatos[0]=datos;
+	
+	let objetosJSON=JSON.stringify(misDatos);
+	conn.send(objetosJSON);
 }
-
 function respuestaSelects(evento)
 {
 	if (evento.target.readyState==4 && evento.target.status==200)
@@ -79,5 +83,10 @@ function respuestaSelects(evento)
 function respuesta(evento)
 {
 	if (evento.target.readyState==4 && evento.target.status==200)
-        document.getElementById("precio").value=evento.target.responseXML.getElementsByTagName("precio").item(0).textContent;	
+	{
+		let datos = JSON.parse(evento.target.responseText);
+		document.getElementById("ancho").value=datos["medidas"]["ancho"]; 
+		document.getElementById("alto").value=datos["medidas"]["alto"]; 
+		document.getElementById("fondo").value=datos["medidas"]["fondo"]; 
+	}
 }
