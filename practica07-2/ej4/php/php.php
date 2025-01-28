@@ -1,7 +1,7 @@
 <?php
-	$nombre=$_REQUEST["nombre"];
-	$apellidos=$_REQUEST["apellidos"];
-	$puesto = $_REQUEST["puesto"];
+	$nombre=$_POST["nombre"];
+	$apellidos=$_POST["apellidos"];
+	$puesto = $_POST["puesto"];
 	$sueldo = rand(1000,3250);
 	echo $sueldo;
 ?>

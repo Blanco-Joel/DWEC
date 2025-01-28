@@ -19,25 +19,28 @@ function llamada(){
 	let modulo    = document.getElementById("modulo").value.trim();
 	let nota      = document.getElementById("nota1").value.trim();
 	
-	let conn;
+	let objetoFetch={
+        method:"POST",
+        headers:{"Content-Type":"application/x-www-form-urlencoded"},
+		body:'nombre='+nombre+'&apellidos='+apellidos+"&modulo="+modulo+"&nota="+nota
+    }
+    
+    fetch("php/php.php", objetoFetch)
+        .then(correcto)
+        .catch(errores);
 
-	if (window.XMLHttpRequest)
-		conn = new XMLHttpRequest;
-	else if (window.ActiveXObject)
-		conn= new ActiveXObject("Microsoft.XMLHttp");
-	
-	if (document.addEventListener)
-		conn.addEventListener("readystatechange", respuesta);
-	else if (document.attachEvent)
-		conn.attachEvent("onreadystatechange", respuesta);
-	
-	conn.open("POST","php/php.php",true);
-	conn.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-	conn.send('nombre='+nombre+'&apellidos='+apellidos+"&modulo="+modulo+"&nota="+nota)
 }
 
-function respuesta(evento)
+function correcto(respuesta){
+	if (respuesta.ok)
+		respuesta.text().then(muestraContenido);
+}
+
+function errores(){
+	alert("Error en la conexión");
+}
+
+function muestraContenido(dato)
 {
-	if (evento.target.readyState==4 && evento.target.status==200)
-        document.getElementById("nota2").value=evento.target.responseText;	
+        document.getElementById("nota2").value=dato;	
 }

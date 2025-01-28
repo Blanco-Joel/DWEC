@@ -29,28 +29,28 @@ function iniciar() {
     }
 
 }
-function enviar(fichero) {
-    if (window.XMLHttpRequest) {
-        conn = new XMLHttpRequest();
-    } else if (window.ActiveXObject) {
-        conn = new ActiveXObject("Microsoft.XMLHTTP");
-    }
+function enviar(fichero){
 
-    if (document.addEventListener) {
-        conn.addEventListener("readystatechange", muestraContenido);
-    } else if (document.attachEvent) {
-        conn.attachEvent("onreadystatechange", muestraContenido);
+    let objetoFetch={
+        method:"GET",
+        headers:{"Content-Type":"application/x-www-form-urlencoded"}
     }
-
-    conn.open('GET', "./php/php.php?provincia="+fichero);
-    conn.send(null);
+    
+    fetch("./php/php.php?provincia="+fichero, objetoFetch)
+        .then(correcto)
+        .catch(errores);
 }
 
-function muestraContenido() {
-    if (conn.readyState == 4) {
-        if (conn.status == 200) {
-            var ele_div = document.getElementById("provincia");
-            ele_div.innerHTML = conn.responseText;
-        }
-    }
+function correcto(respuesta){
+	if (respuesta.ok)
+		respuesta.text().then(muestraContenido);
+}
+
+function errores(){
+	alert("Error en la conexión");
+}
+function muestraContenido(datos) {
+    let ele_div = document.getElementById("provincia");
+    ele_div.innerHTML = datos;
+
 }

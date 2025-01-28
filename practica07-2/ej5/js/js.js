@@ -15,21 +15,48 @@ function inicio(){
 }
 
 function crearSelects(){
-	let conn;
-		if (window.XMLHttpRequest)
-			conn = new XMLHttpRequest;
-		else if (window.ActiveXObject)
-			conn= new ActiveXObject("Microsoft.XMLHttp");
-		
-		if (document.addEventListener)
-			conn.addEventListener("readystatechange", respuestaSelects);
-		else if (document.attachEvent)
-			conn.attachEvent("onreadystatechange", respuestaSelects);
-		
-		conn.open("GET","php/php.php?inicio=true");
-		conn.send(null);
+	let objetoFetch={
+		method:"GET",
+		headers:{"Content-Type":"application/x-www-form-urlencoded"}
+	}
+	
+	fetch("php/php.php?inicio=true", objetoFetch)
+		.then(correctoSelects)
+		.catch(erroresSelects);
+
 	
 
+}
+
+
+function correctoSelects(respuesta){
+	if (respuesta.ok)
+		respuesta.text().then(respuestaSelects);
+}
+
+function erroresSelects(){
+	alert("Error en la conexión");
+}
+
+function respuestaSelects(dato)
+{
+	let parser = new DOMParser();
+	let xml = parser.parseFromString(dato, "application/xml");
+	for (let i = 0; i < 4; i++) {
+		
+		let linea = xml.getElementsByTagName("producto").item(i).textContent;
+		let opcion = document.createElement("option"); 
+		opcion.value = linea;  
+		opcion.textContent = linea; 
+		document.getElementById("marca").appendChild(opcion); 
+	}
+	for (let i = 0; i < 4; i++) {
+		let linea = xml.getElementsByTagName("dimension").item(i).textContent;
+		let opcion = document.createElement("option"); 
+		opcion.value = linea;  
+		opcion.textContent = linea; 
+		document.getElementById("pulgadas").appendChild(opcion); 
+	}
 }
 
 function llamada(){
@@ -37,49 +64,35 @@ function llamada(){
     let marca    = document.getElementById("marca").value.trim();
 	let pulgadas = document.getElementById("pulgadas").value.trim();
 	
-	let conn;
-
-	if (window.XMLHttpRequest)
-		conn = new XMLHttpRequest;
-	else if (window.ActiveXObject)
-		conn= new ActiveXObject("Microsoft.XMLHttp");
-	
-	if (document.addEventListener)
-		conn.addEventListener("readystatechange", respuesta);
-	else if (document.attachEvent)
-		conn.attachEvent("onreadystatechange", respuesta);
-	
-	conn.open("POST","php/php2.php",true);
-
 	let datos= "<producto><marca>"+marca+"</marca><pulgadas>"+pulgadas+"</pulgadas></producto>";
-	conn.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-	conn.send(datos);
+
+	let objetoFetch={
+        method:"POST",
+		headers:{"Content-Type":"application/x-www-form-urlencoded"},
+		body:datos
+    }
+    
+    fetch("php/php2.php", objetoFetch)
+        .then(correcto)
+        .catch(errores);
+	
+
 }
 
-function respuestaSelects(evento)
-{
-	if (evento.target.readyState==4 && evento.target.status==200)
-	{
-		for (let i = 0; i < 4; i++) {
-			
-			let linea = evento.target.responseXML.getElementsByTagName("producto").item(i).textContent;
-			let opcion = document.createElement("option"); 
-			opcion.value = linea;  
-			opcion.textContent = linea; 
-			document.getElementById("marca").appendChild(opcion); 
-		}
-		for (let i = 0; i < 4; i++) {
-			let linea = evento.target.responseXML.getElementsByTagName("dimension").item(i).textContent;
-			let opcion = document.createElement("option"); 
-			opcion.value = linea;  
-			opcion.textContent = linea; 
-			document.getElementById("pulgadas").appendChild(opcion); 
-		}
-		
-	}
+
+function correcto(respuesta){
+	if (respuesta.ok)
+		respuesta.text().then(muestraContenido);
 }
-function respuesta(evento)
+
+function errores(){
+	alert("Error en la conexión");
+}
+
+
+function muestraContenido(dato)
 {
-	if (evento.target.readyState==4 && evento.target.status==200)
-        document.getElementById("precio").value=evento.target.responseXML.getElementsByTagName("precio").item(0).textContent;	
+	let parser = new DOMParser();
+	let xml = parser.parseFromString(dato, "application/xml");
+	document.getElementById("precio").value=xml.getElementsByTagName("precio").item(0).textContent;	
 }

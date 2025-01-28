@@ -18,24 +18,28 @@ function llamada(){
 	let apellidos = document.getElementById("apellidos").value.trim();
 	let modulo    = document.getElementById("modulo").value.trim();
 	
-	let conn;
-
-	if (window.XMLHttpRequest)
-		conn = new XMLHttpRequest;
-	else if (window.ActiveXObject)
-		conn= new ActiveXObject("Microsoft.XMLHttp");
-	
-	if (document.addEventListener)
-		conn.addEventListener("readystatechange", respuesta);
-	else if (document.attachEvent)
-		conn.attachEvent("onreadystatechange", respuesta);
-	
-	conn.open("GET","php/ej2.php?nombre="+nombre+"&apellidos="+apellidos+"&modulo="+modulo);
-	conn.send(null);
+	let objetoFetch={
+        method:"GET",
+        headers:{"Content-Type":"application/x-www-form-urlencoded"}
+    }
+    
+    fetch("php/ej2.php?nombre="+nombre+"&apellidos="+apellidos+"&modulo="+modulo, objetoFetch)
+        .then(correcto)
+        .catch(errores);
+}
+function correcto(respuesta){
+	if (respuesta.ok)
+		respuesta.text().then(mostrarRespuesta);
 }
 
-function respuesta(evento)
+function errores(){
+	alert("Error en la conexión");
+}
+
+function mostrarRespuesta(datos)
 {
-	if (evento.target.readyState==4 && evento.target.status==200)
-        document.getElementById("nota").value=evento.target.responseText;	
+    document.getElementById("nota").value=datos;	
 }
+
+
+

@@ -18,30 +18,33 @@ function llamada(){
 	let apellidos = document.getElementById("apellidos").value.trim();
 	let puesto    = document.getElementById("puesto").value.trim();
 	
-	let conn;
-
-	if (window.XMLHttpRequest)
-		conn = new XMLHttpRequest;
-	else if (window.ActiveXObject)
-		conn= new ActiveXObject("Microsoft.XMLHttp");
-	
-	if (document.addEventListener)
-		conn.addEventListener("readystatechange", respuesta);
-	else if (document.attachEvent)
-		conn.attachEvent("onreadystatechange", respuesta);
-	
-	conn.open("POST","php/php.php",true);
-
 	let datos = new FormData();
+
 	datos.append("nombre",nombre);
 	datos.append("apellidos",apellidos);
 	datos.append("puesto",puesto);
 
-	conn.send(datos);
+	let objetoFetch={
+        method:"POST",
+		body:datos
+    }
+    
+    fetch("php/php.php", objetoFetch)
+        .then(correcto)
+        .catch(errores);
+
+
 }
 
-function respuesta(evento)
+function correcto(respuesta){
+	if (respuesta.ok)
+		respuesta.text().then(muestraContenido);
+}
+
+function errores(){
+	alert("Error en la conexión");
+}
+function muestraContenido(dato)
 {
-	if (evento.target.readyState==4 && evento.target.status==200)
-        document.getElementById("sueldo").value=evento.target.responseText;	
+	document.getElementById("sueldo").value=dato;	
 }
