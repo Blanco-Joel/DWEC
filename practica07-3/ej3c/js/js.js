@@ -1,22 +1,16 @@
-if (document.addEventListener)
-	window.addEventListener("load", inicio);
-else if (document.attachEvent)
-	window.attachEvent("onload", inicio);
+$(window).on("load",inicio);
 
 function inicio(){
-	let boton=document.getElementById("obtener");
-
-	if (document.addEventListener)
-		boton.addEventListener("click", llamada);
-	else if (document.attachEvent)
-		boton.attachEvent("onclick", llamada);
+	let boton=$("#obtener");
+	boton.on("click",llamada);
 }
 function llamada(){
     
-    let nombre    = document.getElementById("nombre").value.trim();
-	let apellidos = document.getElementById("apellidos").value.trim();
-	let modulo    = document.getElementById("modulo").value.trim();
-	let nota      = document.getElementById("nota1").value.trim();
+    let nombre    = $("#nombre").val().trim();
+	let apellidos = $("#apellidos").val().trim();
+	let modulo    = $("#modulo").val().trim();
+	let nota      = $("#nota1").val().trim();
+
 	let objetoAjax=
 	{
 		method:"POST",

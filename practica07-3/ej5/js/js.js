@@ -1,17 +1,11 @@
 
-if (document.addEventListener)
-	window.addEventListener("load", inicio);
-else if (document.attachEvent)
-	window.attachEvent("onload", inicio);
+$(window).on("load", inicio);
 
 function inicio(){
 	crearSelects();
-	let boton=document.getElementById("obtener");
-	
-	if (document.addEventListener)
-		boton.addEventListener("click", llamada);
-	else if (document.attachEvent)
-		boton.attachEvent("onclick", llamada);
+	let boton=$("#obtener");
+	boton.on("click", llamada);
+
 }
 
 function crearSelects(){
@@ -23,11 +17,7 @@ function crearSelects(){
 		success:respuestaSelects,
 		dataType:"xml"
 	}
-	
 	$.ajax(objetoAjax);
-
-	
-
 }
 
 function respuestaSelects(dato)

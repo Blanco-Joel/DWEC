@@ -1,22 +1,14 @@
-if (document.addEventListener)
-	window.addEventListener("load", inicio);
-else if (document.attachEvent)
-	window.attachEvent("onload", inicio);
+$(window).on("load",inicio);
 
 function inicio(){
-	let boton=document.getElementById("obtener");
-
-	if (document.addEventListener)
-		boton.addEventListener("click", llamada);
-	else if (document.attachEvent)
-		boton.attachEvent("onclick", llamada);
+	let boton=$("#obtener");
+	boton.on("click",llamada);
 }
-
 function llamada(){
     
-    let nombre    = document.getElementById("nombre").value.trim();
-	let apellidos = document.getElementById("apellidos").value.trim();
-	let puesto    = document.getElementById("puesto").value.trim();
+    let nombre    = $("#nombre").val().trim();
+	let apellidos = $("#apellidos").val().trim();
+	let puesto    = $("#puesto").val().trim();
 	
 	let datos = new FormData();
 
@@ -26,9 +18,11 @@ function llamada(){
 
 	let objetoAjax=
 	{
-		method:"POST",
-		url:"./php/php.php" ,
+		url:"php/php.php",
+		type:"POST",
 		data:datos,
+		contentType:false,
+		processData:false,
 		success:muestraContenido,
 	}
    	$.ajax(objetoAjax);
@@ -36,15 +30,7 @@ function llamada(){
 
 }
 
-function correcto(respuesta){
-	if (respuesta.ok)
-		respuesta.text().then(muestraContenido);
-}
-
-function errores(){
-	alert("Error en la conexión");
-}
 function muestraContenido(dato)
 {
-	document.getElementById("sueldo").value=dato;	
+	$("#sueldo").val(dato);	
 }

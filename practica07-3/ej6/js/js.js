@@ -1,22 +1,14 @@
-if (document.addEventListener)
-	window.addEventListener("load", inicio);
-else if (document.attachEvent)
-	window.attachEvent("onload", inicio);
+
+$(window).on("load", inicio);
 
 function inicio(){
 	crearSelects();
-	let marca=document.getElementById("marca");
-	let electrodomestico=document.getElementById("electrodomestico");
 
-	if (document.addEventListener)
-	{
-		marca.addEventListener("input", llamada);
-		electrodomestico.addEventListener("input", llamada);
-	}else if (document.attachEvent)
-	{
-		marca.attachEvent("oninput", llamada);
-		electrodomestico.attachEvent("oninput", llamada);
-	}
+	let marca=$("#marca");
+	let electrodomestico=$("#electrodomestico");
+	marca.on("input", llamada);
+	electrodomestico.on("input", llamada);
+
 }
 
 
