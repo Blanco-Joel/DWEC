@@ -1,0 +1,24 @@
+body
+{
+    background-color: red;
+    color: white;
+}
+form {
+    width: 550px;
+    background-color: red;
+    padding: 20px;
+    color: white;
+}
+form input[type="text"],select{
+    width: 200px;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+select{
+    width: 214px;
+
+}
+form label {
+    display: inline-block;
+    width: 200px;
+}

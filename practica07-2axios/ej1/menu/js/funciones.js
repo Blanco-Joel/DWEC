@@ -30,7 +30,10 @@ function iniciar() {
 
 }
 function enviar(fichero){
-	axios.get("./php/php.php",{params:{"provincia":fichero}})
+	axios({
+            method: "get",
+            url: "./php/php.php",
+            params: { "provincia": fichero }})
 		.then(muestraContenido)
 		.catch(errores);
 }
