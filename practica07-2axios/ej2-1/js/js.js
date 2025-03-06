@@ -20,7 +20,7 @@ function llamada(){
 	
    	axios({
 			method: "get",
-			url: "php/ej2.php",
+			url: "php/ej2.py",
 			params: {
 				nombre: nombre,
 				apellidos: apellidos,
